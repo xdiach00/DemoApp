@@ -8,4 +8,6 @@ Completed Bonus Tasks:
 Problems:
 1) The "Distance" sort isn't working correct because of incorrect i don't know what :(
 
+I tried my best to do the project as quickly as possible, because this week will be difficult in terms of studying. If necessary, I can finalize the "cosmetic" issue. (add transitions, etc.)
+
 The installing file is app-debug.apk
