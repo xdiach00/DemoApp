@@ -6,7 +6,6 @@ Completed Bonus Tasks:
 2) The list of places is not reloaded (Fragment)
 3) Added transitions from main activity to fragment and back
 4) Using user's location to count distance
-5) 
 
 Problems:
 1) Some images have poor quality if they are stretched and cropped (centerCrop) to the ImageView size. But this, I hope, is due to the fact that they are stored on the server in low resolution :)
