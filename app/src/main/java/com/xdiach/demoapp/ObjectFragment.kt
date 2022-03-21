@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.location.Location
 import android.net.Uri
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.util.Log
 import android.view.*
 import android.widget.Button
@@ -34,6 +35,8 @@ class ObjectFragment : Fragment() {
     var tbImage: ImageView? = null
     var latitude: Double = 0.0
     var longitude: Double = 0.0
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,26 +68,19 @@ class ObjectFragment : Fragment() {
         tbImage = view.findViewById(R.id.imageObject)
         tvDistance = view.findViewById(R.id.tvDistance)
         val btnNavigate = view.findViewById<Button>(R.id.btnNav)
+        val imageNav = view.findViewById<ImageView>(R.id.imageNavigate)
         val imageBack = view.findViewById<ImageView>(R.id.imageBack)
-        val sourceLatitude = 50.100558
-        val sourceLongitude = 14.424798
 
         imageBack.setOnClickListener(View.OnClickListener {
             goBack()
         })
 
+        imageNav.setOnClickListener(View.OnClickListener {
+            openGoogle()
+        })
 
         btnNavigate.setOnClickListener(View.OnClickListener {
-            // Create a Uri from an intent string. Use the result to create an Intent.
-            val gmmIntentUri = Uri.parse("geo:" + latitude + "," + longitude)
-
-            // Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
-            val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
-            // Make the Intent explicit by setting the Google Maps package
-            mapIntent.setPackage("com.google.android.apps.maps")
-
-            // Attempt to start an activity that can handle the Intent
-            startActivity(mapIntent)
+            openGoogle()
         })
     }
 
@@ -154,5 +150,18 @@ class ObjectFragment : Fragment() {
         }
 
         getFragmentManager()?.popBackStack()
+    }
+
+    fun openGoogle() {
+        // Create a Uri from an intent string. Use the result to create an Intent.
+        val gmmIntentUri = Uri.parse("geo:" + latitude + "," + longitude)
+
+        // Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+        // Make the Intent explicit by setting the Google Maps package
+        mapIntent.setPackage("com.google.android.apps.maps")
+
+        // Attempt to start an activity that can handle the Intent
+        startActivity(mapIntent)
     }
 }

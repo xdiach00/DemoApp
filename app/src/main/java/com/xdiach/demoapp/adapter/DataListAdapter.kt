@@ -46,7 +46,12 @@ class DataListAdapter: RecyclerView.Adapter<DataListAdapter.ViewHolder>() {
                 args.putString("uuid", uuid)
                 objectFragment.arguments = args
 
-                activity.supportFragmentManager.beginTransaction().replace(R.id.mainLayout, objectFragment).addToBackStack(null).commit()
+                activity.supportFragmentManager.beginTransaction().setCustomAnimations(
+                    R.anim.slide_in,
+                    R.anim.slide_out,
+                    R.anim.fade_in,
+                    R.anim.fade_out
+                ).replace(R.id.mainLayout, objectFragment).addToBackStack(null).commit()
             }
         })
     }
