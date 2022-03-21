@@ -15,6 +15,8 @@ import com.squareup.picasso.Picasso
 import com.xdiach.demoapp.ObjectFragment
 import com.xdiach.demoapp.R
 import com.xdiach.demoapp.data.DataModel
+import com.xdiach.demoapp.latitude
+import com.xdiach.demoapp.longitude
 
 var distance: Float = 0.0f
 
@@ -70,8 +72,8 @@ class DataListAdapter: RecyclerView.Adapter<DataListAdapter.ViewHolder>() {
         fun bind(data: DataModel) {
 
             val startPoint = Location("locationA")
-            startPoint.setLatitude(50.100558)
-            startPoint.setLongitude(14.424798)
+            startPoint.setLatitude(latitude)
+            startPoint.setLongitude(longitude)
 
             val endPoint = Location("locationA")
             endPoint.setLatitude(data.location.latitude)

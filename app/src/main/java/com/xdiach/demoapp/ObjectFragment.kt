@@ -2,6 +2,7 @@ package com.xdiach.demoapp
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.location.Location
 import android.net.Uri
@@ -13,6 +14,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.squareup.picasso.Picasso
 import com.xdiach.demoapp.adapter.distance
@@ -33,9 +35,8 @@ class ObjectFragment : Fragment() {
     var tvDescription: TextView? = null
     var imageURL: String = ""
     var tbImage: ImageView? = null
-    var latitude: Double = 0.0
-    var longitude: Double = 0.0
-
+    var latitudeTarget: Double = 0.0
+    var longitudeTarget: Double = 0.0
 
 
     override fun onCreateView(
@@ -115,13 +116,13 @@ class ObjectFragment : Fragment() {
                         tvCity!!.setText(data.address.city)
                         tvStreet!!.setText(data.address.zip + " " + data.address.street)
                         tvDescription!!.setText(data.description)
-                        latitude = data.location.latitude
-                        longitude = data.location.longitude
+                        latitudeTarget = data.location.latitude
+                        longitudeTarget = data.location.longitude
                         Picasso.get().load(imageURL).into(tbImage)
 
                         val startPoint = Location("locationA")
-                        startPoint.setLatitude(50.100558)
-                        startPoint.setLongitude(14.424798)
+                        startPoint.setLatitude(latitude)
+                        startPoint.setLongitude(longitude)
 
                         val endPoint = Location("locationA")
                         endPoint.setLatitude(data.location.latitude)
@@ -154,7 +155,7 @@ class ObjectFragment : Fragment() {
 
     fun openGoogle() {
         // Create a Uri from an intent string. Use the result to create an Intent.
-        val gmmIntentUri = Uri.parse("geo:" + latitude + "," + longitude)
+        val gmmIntentUri = Uri.parse("geo:" + latitudeTarget + "," + longitudeTarget)
 
         // Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
         val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
