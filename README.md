@@ -20,6 +20,6 @@ Libraries:
 4) Picasso
 5) Play Services Location
 
-I tried my best to do the project as quickly as possible. I hope that this has not affected the quality of the code very much, although I know that it is far from the best :)
+I tried my best to do the project as quickly as possible.
 
 The installing file is app-debug.apk
